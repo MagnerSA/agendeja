@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
     return Panel(
       height: 50,
       onTap: isRegister ? register : login,
-      color: hasLoginFailed ? redColor : secondaryColor,
+      color: hasLoginFailed ? redColor : redColor,
       child: Center(
         child: Text(
           isRegister ? "Cadastrar" : "Login",
