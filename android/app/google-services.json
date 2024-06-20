@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383398987488",
+    "project_id": "projeto-agendeja",
+    "storage_bucket": "projeto-agendeja.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383398987488:android:cad5183a959de90b1af285",
+        "android_client_info": {
+          "package_name": "com.example.agendeja"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS1ecxU9H-BX928jly_iWyOPchc_W7wYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
