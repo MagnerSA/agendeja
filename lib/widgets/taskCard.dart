@@ -108,6 +108,7 @@ class _TaskCardState extends State<TaskCard> {
         _nameController.clear();
         _selectedStartTime = null;
         _selectedEndTime = null;
+        enableHourSelection = false;
       });
     }
   }
@@ -449,7 +450,7 @@ class _TaskCardState extends State<TaskCard> {
                     children: [
                       _widgetCheck(),
                       Visibility(
-                        visible: _selectedStartTime != null,
+                        visible: (_selectedStartTime != null) && !_isCreation(),
                         child: Padding(
                           padding: EdgeInsets.only(left: getSizeSpace(context)),
                           child: Container(
