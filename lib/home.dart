@@ -48,9 +48,22 @@ class _HomeState extends State<Home> {
     userInfo = await userService.getCurrentUser();
 
     _initDates();
+    _updateLateTasks();
     // _loadTasks();
 
     setState(() {});
+  }
+
+  _updateLateTasks() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    await taskService.updateLateTasks();
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   _loadTasks() async {
@@ -116,9 +129,12 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 sizedBox(context),
-                const Icon(
-                  Icons.calendar_month,
-                  size: 20,
+                Image(
+                  image: AssetImage('assets/images/logo.png'),
+                  // width: 300, // Largura desejada da imagem
+                  height: 30, // Altura desejada da imagem
+                  fit:
+                      BoxFit.contain, // Ajuste da imagem dentro do widget Image
                 ),
                 smallSizedBox(context),
                 Visibility(

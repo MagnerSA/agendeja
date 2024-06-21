@@ -18,12 +18,6 @@ class TaskService {
     // await storage.ready;
     String uid = getUID();
 
-    // var storedData = storage.getItem(key);
-
-    // storedData[task["id"]] = task;
-
-    // storage.setItem(key, storedData);
-
     await bd
         .collection("users")
         .doc(uid)
@@ -78,6 +72,59 @@ class TaskService {
 
     // return tasks;
   }
+
+  updateLateTasks() async {
+    DateTime today = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    );
+
+    var collection =
+        await bd.collection("users").doc(getUID()).collection("tasks").get();
+    //     // .where("date", isLessThan: Timestamp.fromDate(now))
+    //     // .where("checked", isEqualTo: false)
+
+    for (var doc in collection.docs) {
+      if (doc.data()["checked"] == false) {
+        DateTime taskDate = DateTime.parse(doc.data()["date"]);
+
+        if (DateTime.parse((doc.data()["date"])).isBefore(today)) {
+          print("UMA");
+          await bd
+              .collection("users")
+              .doc(getUID())
+              .collection("tasks")
+              .doc(doc.id)
+              .update(
+            {
+              "date": today.toString(),
+            },
+          );
+        }
+      }
+      // print('Data: ${doc.data()["date"]}');
+      // print('Checked: ${doc.data()["checked"]}');
+      // print('-------------------');
+    }
+
+    // var collection = await bd.collection("users").doc(getUID()).get();
+
+    // String lastUpdateString = collection.data()?["lastUpdate"] ?? "";
+
+    // if (lastUpdateString == "") {
+    //   await bd
+    //       .collection("users")
+    //       .doc(getUID())
+    //       .update({"lastUpdate": today.toString()});
+    // } else {
+    //   if (!DateTime.parse(lastUpdateString).isAtSameMomentAs(today)) {
+    //     print("É HOJE");
+    //   }
+    // }
+  }
+
+  _realocateLateTasks() async {}
 
   getUID() {
     String uid = userService.currentUserID();

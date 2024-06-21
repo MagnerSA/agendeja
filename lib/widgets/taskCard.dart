@@ -96,7 +96,7 @@ class _TaskCardState extends State<TaskCard> {
         DateTime.now().month,
         DateTime.now().day,
       ).toString(),
-      "checked": false,
+      "checked": isSelected,
     };
 
     await _taskService.createTask(task);

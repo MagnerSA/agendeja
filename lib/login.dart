@@ -171,12 +171,18 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Image(
+            image: AssetImage('assets/images/full-logo.png'),
+            width: 300, // Largura desejada da imagem
+            // height: 200, // Altura desejada da imagem
+            fit: BoxFit.contain, // Ajuste da imagem dentro do widget Image
+          ),
           const Text(
             "AgendeJa",
             style: TextStyle(
               color: primaryColor,
               fontWeight: FontWeight.w900,
-              fontSize: 40,
+              fontSize: 30,
             ),
           ),
           sizedBox(context),
