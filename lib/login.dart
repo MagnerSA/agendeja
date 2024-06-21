@@ -27,6 +27,8 @@ class _LoginPageState extends State<LoginPage> {
 
   bool isRegister = false;
 
+  bool showPassword = false;
+
   @override
   initState() {
     initPage();
@@ -134,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
     return Panel(
       height: 50,
       onTap: isRegister ? register : login,
-      color: hasLoginFailed ? redColor : redColor,
+      color: hasLoginFailed ? redColor : secondaryColor,
       child: Center(
         child: Text(
           isRegister ? "Cadastrar" : "Login",
@@ -265,7 +267,6 @@ class _LoginPageState extends State<LoginPage> {
                         Input(
                           error: hasLoginFailed,
                           height: getSizeHeight(context),
-                          keyboardType: TextInputType.number,
                           hintText: "E-mail",
                           controller: _emailController,
                         ),
@@ -278,9 +279,28 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           error: hasLoginFailed,
                           height: getSizeHeight(context),
-                          keyboardType: TextInputType.number,
                           hintText: "Senha",
+                          obscureText: !showPassword,
                           controller: _passwordController,
+                        ),
+                        smallSizedBox(context),
+                        Panel(
+                          hasShadow: false,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                "${showPassword ? "Ocultar" : "Exibir"} senha",
+                                textAlign: TextAlign.end,
+                                style: TextStyle(color: primaryColor),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            setState(() {
+                              showPassword = !showPassword;
+                            });
+                          },
                         ),
                         SizedBox(height: getSizeHeight(context)),
                         _loginButton(),

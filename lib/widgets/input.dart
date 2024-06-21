@@ -15,6 +15,7 @@ class Input extends StatelessWidget {
   final Color? borderColor;
   final Color? textColor;
   final bool? error;
+  final bool? obscureText;
   final void Function(String)? onSubmitted;
 
   const Input({
@@ -31,6 +32,7 @@ class Input extends StatelessWidget {
     this.borderColor,
     this.textColor,
     this.onSubmitted,
+    this.obscureText,
   }) : super(key: key);
 
   @override
@@ -51,6 +53,7 @@ class Input extends StatelessWidget {
             right: getSizeSpace(context),
           ),
           child: TextFormField(
+            obscureText: obscureText ?? false,
             onFieldSubmitted: onSubmitted,
             controller: controller,
             cursorColor: textColor ?? Colors.grey,
